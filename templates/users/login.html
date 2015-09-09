@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br>
+<br>
+<br>
+
+<div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+            <p class="lead">
+                <form role="form" class="form-signin" method="POST" action="/login">{% csrf_token %}
+                        {% if invalid %}
+                            <div class="alert alert-danger">
+                                <b>The username / email or password is invalid.</b>
+                            </div>
+                        {% endif %}
+                        <input type="username" class="form-control" name="username_or_email" placeholder="Username or Email" autofocus>
+                        <input type="password" class="form-control" name="password" placeholder="Password">
+                        <br/>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                </form>
+            </p>
+          </div>
+          <div class="mastfoot">
+            <div class="inner">
+                <a href="/" class="btn btn-primary btn-lg">Sign Up</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
