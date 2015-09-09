@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 
 class Article(models.Model):
@@ -14,3 +14,19 @@ class Article(models.Model):
 	def __unicode__(self):
 		return self.url
 
+
+class ReadLog(models.Model):
+	article = models.OneToOneField(Article)
+	user = models.OneToOneField(User)
+	is_read = models.BooleanField(default=False)
+
+	def __unicode__(self):
+		return self.is_read
+
+class DeleteLog(models.Model):
+	article = models.OneToOneField(Article)
+	user = models.OneToOneField(User)
+	is_deleted = models.BooleanField(default=False)
+
+	def __unicode(self):
+		self.article
