@@ -1,43 +1,24 @@
-# Heroku Django Starter Template
+# Readr
 
-An utterly fantastic project starter template for Django 1.8.
+Read all news in one single dashboard
 
 ## Features
 
-- Production-ready configuration for Static Files, Database Settings, Gunicorn, etc.
-- Enhancements to Django's static file serving functionality via WhiteNoise
-- Enhancements to Django's database functionality via django-postgrespool and dj-database-url
+- Store reading logs.
+- Mark as read to archive
+- Delete unwanted articles
 
 ## How to Use
 
 To use this project, follow these steps:
 
 1. Create your working environment.
-2. Install Django (`$ pip install django`)
-3. Create a new project using this template
+2. Install requirements (`$ pip install -r requirements.txt`)
+3. `python manage.py migrate`
+4. `python manage.py runserver`
 
-## Creating Your Project
 
-Using this template to create a new Django app is easy::
+## Populate latest news from hackernews
 
-    $ django-admin.py startproject --template=https://github.com/heroku/heroku-django-template/archive/master.zip --name=Procfile helloworld
+    $ python manage.py populate_news
 
-You can replace ``helloworld`` with your desired project name.
-
-## Deployment to Heroku
-
-    $ git init
-    $ git add -A
-    $ git commit -m "Initial commit"
-
-    $ heroku create
-    $ git push heroku master
-
-    $ heroku run python manage.py migrate
-
-## Further Reading
-
-- [Gunicorn](https://warehouse.python.org/project/gunicorn/)
-- [WhiteNoise](https://warehouse.python.org/project/whitenoise/)
-- [django-postgrespool](https://warehouse.python.org/project/django-postgrespool/)
-- [dj-database-url](https://warehouse.python.org/project/dj-database-url/)
