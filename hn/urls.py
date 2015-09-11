@@ -8,6 +8,7 @@ api = Api(api_name='v1')
 api.register(news.api.ArticleResource())
 
 
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'hn.views.home', name='home'),
