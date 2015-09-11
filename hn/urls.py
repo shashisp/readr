@@ -3,10 +3,12 @@ from django.contrib import admin
 
 from tastypie.api import Api
 import news.api
+import users.api
 
 api = Api(api_name='v1')
 api.register(news.api.ArticleResource())
-
+api.register(users.api.UserRegistrationResource())
+api.register(users.api.UserLoginResource())
 
 
 urlpatterns = patterns('',

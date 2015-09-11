@@ -34,3 +34,7 @@ class LoginForm(forms.Form):
                 raise forms.ValidationError("")
 
         return cleaned_data
+
+
+class RegistrationForm(forms.Form):
+    pass
