@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import json
 
-from django.contrib.auth import logout
+from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
@@ -30,5 +30,20 @@ def login(request):
 
 
 def logout(request):
-    logout(request)
-    return redirect(reverse('/'))
+    auth_logout(request)
+    return redirect('/')
+
+
+def register(request):
+    form_errors = {}
+    if request.method == "POST":
+        resource = users.api.RegistrationResource()
+        try:
+            resource.post_list(request=request)
+            return redirect('/dashboard/')
+        except ImmediateHttpResponse, e:
+            form_errors = json.loads(e.response.content)['candidate_registration']
+
+    return render(request, "users/register.html",
+                  {'form_errors': form_errors})
+

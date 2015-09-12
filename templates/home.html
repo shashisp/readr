@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+	
+<hr>
+<br>
+<br>
+<br>
+    <!-- Page Content -->
+    <div class="container" ng-controller="newsCtrl">
+
+        <div class="row">
+
+            <div class="col-md-3">
+               
+                <div class="list-group">
+                    <a href="#" class="list-group-item">Archives</a>
+                    <a href="#" class="list-group-item">
+                    Doc</a>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <div class="row" >
+                	<div ng-repeat="article in articles">
+                    <div class="col-sm-5 col-lg-5 col-md-5">
+                        <div class="thumbnail">
+                            <div class="caption">                         
+                                <p>HN URL <a href="#">[[ article.hn_url ]]</a>
+                                </p>
+                                <p>Comments: [[ article.comments ]].</p>
+                                <p>Upvotes: [[ article.up_votes ]].</p>
+                            </div>
+                            <a href="[[ article.url ]]" class="label label-info">Read more</a>
+                            <a href="[[ article.url ]]" class="label label-warning">Mark as read</a>
+                            <a href="[[ article.url ]]" class="label label-danger">Delete</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

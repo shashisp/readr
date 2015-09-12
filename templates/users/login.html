@@ -2,34 +2,36 @@
 
 {% block content %}
 
-<br>
-<br>
-<br>
 
-<div class="site-wrapper">
-      <div class="site-wrapper-inner">
-        <div class="cover-container">
-            <p class="lead">
-                <form role="form" class="form-signin" method="POST" action="/login">{% csrf_token %}
-                        {% if invalid %}
-                            <div class="alert alert-danger">
-                                <b>The username / email or password is invalid.</b>
-                            </div>
-                        {% endif %}
-                        <input type="username" class="form-control" name="username_or_email" placeholder="Username or Email" autofocus>
-                        <input type="password" class="form-control" name="password" placeholder="Password">
-                        <br/>
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+<br/>
+<br/>
+<br/>
+<div>
+
+    <div class="container" ng-controller="loginCtrl">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12 col-md-offset-4 col-sm-offset-3">
+                <form role="form" method="POST" ng-submit="loginUser()" novalidate>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" autofocus ng-model="user.email" name="email" form-name="user_login"/>
+                        {{ form_errors.email.0 }}
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" ng-model="user.password" name="password" form-name="user_login"/>
+                        {{ form_errors.password.0 }}
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-lg btn-wide btn-success">Login</button>
+                    </div>
                 </form>
-            </p>
-          </div>
-          <div class="mastfoot">
-            <div class="inner">
-                <a href="/" class="btn btn-primary btn-lg">Sign Up</a>
             </div>
-          </div>
         </div>
-      </div>
     </div>
+</div>
+
+
 
 {% endblock %}

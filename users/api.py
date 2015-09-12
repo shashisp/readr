@@ -27,7 +27,7 @@ class UserLoginResource(ModelResource):
     """
 
     class Meta:
-        resource_name = 'user_login'
+        resource_name = 'login'
         authentication = Authentication()
         list_allowed_methods = ['post']
         validation = FormValidation(form_class=forms.LoginForm)
@@ -35,8 +35,6 @@ class UserLoginResource(ModelResource):
         excludes = ['password']
 
     def obj_create(self, bundle, **kwargs):
-        """ Send errors if data is not valid else login the user.
-        """
 
         if not self.is_valid(bundle):
             raise ImmediateHttpResponse(response=HttpBadRequest(
@@ -46,22 +44,17 @@ class UserLoginResource(ModelResource):
                             password=bundle.data["password"])
         login(bundle.request, user)
 
-        properties = {
-            "name": user.get_full_name()
-        }
-
         return bundle
 
     def create_response(self, request, bundle, *args, **kwargs):
-
 
         if "password" in bundle.data:
             del bundle.data['password']
 
         bundle.data['nextUrl'] = reverse('dashboard')
-
         return super(UserLoginResource, self).create_response(
                 request, bundle, *args, **kwargs)
+
 
 
 class UserRegistrationResource(ModelResource):
@@ -81,7 +74,7 @@ class UserRegistrationResource(ModelResource):
 
     def obj_create(self, bundle, **kwargs):
         bundle.obj = self._meta.object_class()
-
+        
         bundle = self.full_hydrate(bundle)
         self.is_valid(bundle)
 
