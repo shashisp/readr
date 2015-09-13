@@ -35,6 +35,9 @@ class LoginForm(forms.Form):
 
 #registration is not properly validated
 class RegistrationForm(forms.Form):
+    pass
+
+"""
     name = forms.CharField()
     email = forms.EmailField()
     password = forms.CharField()
@@ -53,3 +56,4 @@ class RegistrationForm(forms.Form):
             raise forms.ValidationError(" Please enter proper details")
 
         return cleaned_data
+"""

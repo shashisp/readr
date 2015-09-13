@@ -123,3 +123,4 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 APPEND_SLASH=False
 TASTYPIE_ALLOW_MISSING_SLASH = True
+API_LIMIT_PER_PAGE = 90
