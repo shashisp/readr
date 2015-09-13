@@ -1,6 +1,6 @@
 # Readr
 
-Read all news in one single dashboard
+Read Hackernews articles in your dashboard
 
 ## Features
 
