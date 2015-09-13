@@ -2,7 +2,7 @@
 
 {% block content %}
 
-
+ <!--  
 <br/>
 <br/>
 <br/>
@@ -31,7 +31,38 @@
         </div>
     </div>
 </div>
+  -->
 
+ <br/>
+<br/>
+<br/>
+<div>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12 col-md-offset-4 col-sm-offset-3">
+                <form role="form" method="POST" method="POST" action="/">
+                    {% csrf_token %}
+                    {% if invalid %}
+                            <div class="alert alert-danger">
+                                <b>The username / email or password is invalid.</b>
+                            </div>
+                        {% endif %}
+                    <div class="form-group">
+                        <label for="email">Email or Username</label>
+                        <input type="text" class="form-control" id="email" autofocus  name="username_or_email" >
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password"  name="password" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-lg btn-wide btn-success">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

@@ -34,4 +34,8 @@ class LoginForm(forms.Form):
 
 
 class RegistrationForm(forms.Form):
-    pass
+
+    def clean(self):
+        import ipdb; ipdb.set_trace()
+
+        return cleaned_email

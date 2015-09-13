@@ -14,8 +14,8 @@ api.register(users.api.UserLoginResource())
 urlpatterns = patterns('',
     # Examples:
     url(r'^dashboard/', 'news.views.home', name='home'),
-    url(r'^$', 'users.views.login', name='login'),
-    url(r'^register/', 'users.views.register', name='register'),
+    url(r'^$', 'users.views.simple_login', name='simple_login'),
+    url(r'^register/', 'users.views.register', name='signup'),
     url(r'^logout/', 'users.views.logout', name='logout'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(api.urls)),
