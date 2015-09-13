@@ -15,20 +15,22 @@ function newsCtrl($scope, $rootScope, articleService) {
      $scope.markRead = function(article) {
         articleService.update_log({
             id: article.id
-        }, { is_read: true },
+        }, { action: 1 },
         function() {
             article.is_read = true;
         });
+           $scope.getResourceObject();
     };
 
     $scope.markDeleted = function(article) {
     	articleService.update_log({
     		id: article.id
-    	}, {is_deleted: true},
+    	}, {action:2},
     	function() {
     		article.is_deleted= true
 
     	});
+        $scope.getResourceObject();
     }
 
 

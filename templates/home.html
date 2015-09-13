@@ -23,7 +23,7 @@
             <div class="col-md-9">
 
                 <div class="row" >
-                	<div ng-repeat="article in articles">
+                	<div ng-repeat="article in articles" ng-show="article.is_deleted != true">
                     <div class="col-sm-5 col-lg-5 col-md-5">
                         <div class="thumbnail">
                             <div class="caption">                         
@@ -34,7 +34,7 @@
                                 <p>Posted on: [[ article.posted_on ]].</p>
                             </div>
                             <a href="[[ article.url ]]" class="label label-info">Read more</a>
-                            <a ng-if="is_read == null"
+                            <a ng-show="article.is_read != true"
                             ng-click="markRead(article)" class="label label-warning">Mark as read</a>
                             <a ng-click="markDeleted(article)" class="label label-danger">Delete</a>
                         </div>

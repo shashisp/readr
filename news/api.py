@@ -4,6 +4,7 @@ from tastypie import fields
 from tastypie.utils import trailing_slash
 from news.models import Article, Log
 from django.conf.urls import url
+import json
 
 
 class ArticleResource(ModelResource):
@@ -17,10 +18,10 @@ class ArticleResource(ModelResource):
 
     def prepend_urls(self):
         return [
-            url(r"^(?P<resource_name>%s)/(?P<pk>\d+)/updated%s$$" %
+            url(r"^(?P<resource_name>%s)/(?P<pk>\d+)/update_log%s$" %
                 (self._meta.resource_name, trailing_slash()),
                     self.wrap_view('update_log'),
-                    name='api-update-read'),
+                    name='api-update-log'),
         ]
     def get_object_list(self, request):
 
@@ -31,15 +32,20 @@ class ArticleResource(ModelResource):
     def update_log(self, request, **kwargs):
         self.method_check(request, allowed=['post'])
         body = json.loads(request.body)
-        article = models.Article.objects.get(id=kwargs['pk'])
+        article = Article.objects.get(id=kwargs['pk'])
 
         log = Log.objects.get_or_create(
-            user=request.user,
-            article=article,
+            user_id=request.user.id,
+            article_id=article.id,
         )
-        log.is_read = body['is_read']
-        log.is_deleted = body['is_deleted']
-        log.save()
+
+        # Mark as read
+        if body['action'] == 1:
+            log[0].is_read = True
+        #mark as delete
+        if body['action'] == 2:
+            log[0].is_deleted = True
+        log[0].save()
 
         return self.create_response(request, {
             'success': True,

@@ -17,8 +17,8 @@ class Article(models.Model):
 
 
 class Log(models.Model):
-	article = models.OneToOneField(Article)
-	user = models.OneToOneField(User)
+	article = models.ForeignKey(Article)
+	user = models.ForeignKey(User)
 	is_read = models.NullBooleanField(default=False)
 	is_deleted  = models.NullBooleanField(default=False)
 

@@ -29,7 +29,7 @@ angular.module("newsServices", ["ngResource"])
 
 
     .factory("articleService", function($resource) {
-        var url = "/api/v1/news/:id/",
+        var url = "/api/v1/news/:id",
             articles = $resource(url, {
                 id: "@id"
             }, {
@@ -37,10 +37,10 @@ angular.module("newsServices", ["ngResource"])
                     method: "PUT"
                 },
                 update_log: {
-                    method: "POST",
-                    url: url + "/updated/",
-                    params: {id: "@id"}
+                    url: url + "/update_log/",
+                    method:"POST",
                 }
+
             });
 
         return articles;

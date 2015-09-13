@@ -33,9 +33,23 @@ class LoginForm(forms.Form):
 
 
 
+#registration is not properly validated
 class RegistrationForm(forms.Form):
+    name = forms.CharField()
+    email = forms.EmailField()
+    password = forms.CharField()
 
     def clean(self):
-        import ipdb; ipdb.set_trace()
+        cleaned_data = self.cleaned_data
+        name = cleaned_data.get('first_name')
+        email = cleaned_data.get('email')
+        password = cleaned_data.get('password')
 
-        return cleaned_email
+        if (email and password and name):
+            db_user_query = User.objects.filter(email=email)
+            if db_user_query:
+                raise forms.ValidationError("User with email is already exists")
+        else:
+            raise forms.ValidationError(" Please enter proper details")
+
+        return cleaned_data

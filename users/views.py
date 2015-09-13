@@ -71,11 +71,11 @@ def simple_login(request):
 
 
 def logout(request):
-    auth_logout(request)
+    django_logout(request)
     return redirect('/')
 
 
-
+@redirect_to_dashboard_if_loggedn
 def register(request):
     form_errors = {}
     if request.method == "POST":
