@@ -12,6 +12,26 @@ function newsCtrl($scope, $rootScope, articleService) {
         return article.$promise;
     };
 
+     $scope.markRead = function(article) {
+        articleService.update_log({
+            id: article.id
+        }, { is_read: true },
+        function() {
+            article.is_read = true;
+        });
+    };
+
+    $scope.markDeleted = function(article) {
+    	articleService.update_log({
+    		id: article.id
+    	}, {is_deleted: true},
+    	function() {
+    		article.is_deleted= true
+
+    	});
+    }
+
+
     $scope.getResourceObject();
 
 }
@@ -39,6 +59,7 @@ function RegisterCtrl($scope, $window, newsHttpService) {
         $window.location = "/dashboard/";
     };
 }
+
 
 
 function loginCtrl($scope, $window, newsHttpService) {

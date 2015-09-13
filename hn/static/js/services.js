@@ -36,15 +36,10 @@ angular.module("newsServices", ["ngResource"])
                 update: {
                     method: "PUT"
                 },
-                request_followup: {
+                update_log: {
                     method: "POST",
-                    url: url + "request_followup/",
-                    params: {}
-                },
-                update_last_inprocess_check: {
-                    method: "PUT",
-                    url: url + "update_last_inprocess_check/",
-                    params: {}
+                    url: url + "/updated/",
+                    params: {id: "@id"}
                 }
             });
 
