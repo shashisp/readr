@@ -16,13 +16,11 @@ class Article(models.Model):
 		return self.url
 
 
-class ReadLog(models.Model):
+class Log(models.Model):
 	article = models.OneToOneField(Article)
 	user = models.OneToOneField(User)
-	is_read = models.BooleanField(default=False)
+	is_read = models.NullBooleanField(default=False)
+	is_deleted  = models.NullBooleanField(default=False)
 
-
-class DeleteLog(models.Model):
-	article = models.OneToOneField(Article)
-	user = models.OneToOneField(User)
-	is_deleted = models.BooleanField(default=False)
+	def __unicode__(self):
+		return u"%s" % self.user
