@@ -9,7 +9,7 @@ class Command(BaseCommand):
  
   def handle(self, *args, **options):
     latest = requests.get('https://hacker-news.firebaseio.com/v0/topstories.json').json()
-    latest = latest[:2]
+    latest = latest[:90]
 
     for i in latest:
       x = requests.get('https://hacker-news.firebaseio.com/v0/item/'+str(i)+'.json').json()

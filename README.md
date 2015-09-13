@@ -28,3 +28,4 @@ To use this project, follow these steps:
 #ToDo
 -add proper validation for registration form
 
+<img src="rss.png">
