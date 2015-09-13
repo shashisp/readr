@@ -21,10 +21,7 @@ from tastypie import fields
 
 import users.forms as forms
 
-
 class UserLoginResource(ModelResource):
-    """ A resource that logs a user in.
-    """
 
     class Meta:
         resource_name = 'login'
