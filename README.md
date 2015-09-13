@@ -21,4 +21,10 @@ To use this project, follow these steps:
 ## Populate latest news from hackernews
 
     $ python manage.py populate_news
+    
+    using HackerNews API for populating https://github.com/HackerNews/API
+
+
+#ToDo
+-add proper validation for registration form
 
