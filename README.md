@@ -27,5 +27,6 @@ To use this project, follow these steps:
 
 #ToDo
 -add proper validation for registration form
+-add sidebar filters based on article status
 
 <img src="rss.png">
