@@ -16,7 +16,7 @@
                 <div class="list-group">
                     <a href="#" class="list-group-item">Archives</a>
                     <a href="#" class="list-group-item">
-                    Doc</a>
+                    All</a>
                 </div>
             </div>
 
@@ -31,10 +31,12 @@
                                 </p>
                                 <p>Comments: [[ article.comments ]].</p>
                                 <p>Upvotes: [[ article.up_votes ]].</p>
+                                <p>Posted on: [[ article.posted_on ]].</p>
                             </div>
                             <a href="[[ article.url ]]" class="label label-info">Read more</a>
-                            <a href="[[ article.url ]]" class="label label-warning">Mark as read</a>
-                            <a href="[[ article.url ]]" class="label label-danger">Delete</a>
+                            <a ng-if="is_read == null"
+                            ng-click="markRead(article)" class="label label-warning">Mark as read</a>
+                            <a ng-click="markDeleted(article)" class="label label-danger">Delete</a>
                         </div>
                     </div>
                     </div>
