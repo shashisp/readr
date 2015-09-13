@@ -8,18 +8,19 @@ class Command(BaseCommand):
   help = 'Custom Command to populate data'
  
   def handle(self, *args, **options):
-    newest = requests.get('https://hacker-news.firebaseio.com/v0/topstories.json').json()
-    newest = newest[:2]
+    latest = requests.get('https://hacker-news.firebaseio.com/v0/topstories.json').json()
+    latest = latest[:2]
 
-    for i in newest:
+    for i in latest:
       x = requests.get('https://hacker-news.firebaseio.com/v0/item/'+str(i)+'.json').json()
 
-      import ipdb; ipdb.set_trace()
+      #convert unix timestamp to datetime
       posted_on = datetime.datetime.fromtimestamp(float(x['time']))
+
+      #create hn_url (HN format)
       hn_url = 'https://news.ycombinator.com/item?id='+str(x['id'])
 
-      
-      #HN jobs doesn't have comments(descendants), so assignin comments as 0
+      #HN jobs doesn't have comments(descendants), so assigning comments count to 0
       try:
         comments = x['descendants']
       except Exception:
@@ -29,8 +30,7 @@ class Command(BaseCommand):
         #if article already exists update attributes 
         old = Article.objects.get(hn_id=x['id'])
         if old:
-          Article.objects.update(hn_id=x['id'], url=x['url'],
-              hn_url=hn_url, posted_on=posted_on,
+          Article.objects.update(hn_id=x['id'],
               up_votes=x['score'], comments=comments)
           print hn_url
           print 'updated'

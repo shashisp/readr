@@ -60,10 +60,11 @@ class ArticleResource(ModelResource):
     		bundle.data['is_read'] = True
 
     	delete = Log.objects.filter(user=bundle.request.user,article=bundle.obj, is_deleted=True)
+
     	if delete:
     		bundle.data['is_deleted'] = True
-    	# import datetime
-    	bundle.data['posted_on'] = bundle.data['posted_on'].strftime("%Y-%m-%d %H:%M:%S")
+
+        bundle.data['posted_on'] = bundle.data['posted_on'].strftime("%Y-%m-%d %H:%M:%S")
 
     	return bundle
 
