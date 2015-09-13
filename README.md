@@ -18,7 +18,7 @@ To use this project, follow these steps:
 4. `python manage.py runserver`
 
 
-## Populate latest news from hackernews
+## Populate Top news articles from hackernews
 
     $ python manage.py populate_news
     
