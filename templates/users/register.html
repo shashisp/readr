@@ -18,25 +18,27 @@
                         
                         <form role="form" method="POST" ng-submit="createUser()" novalidate>
                             {% csrf_token %}
-                            <div class="form-group">
-                                <label for="name">First Name</label>
-                                <input type="text" class="form-control" id="name" name="name" autofocus ng-model="user.first_name" form-name="registration" />
-                                {{ form_errors.first_name.0 }}
+
+
+                        {% if not_available %}
+                            <div class="alert alert-danger">
+                                <b>The username or email is already used.<br/>Try something different.</b>
                             </div>
-                            <div class="form-group">
-                                <label for="name">Last Name</label>
-                                <input type="text" class="form-control" id="name" name="name" autofocus ng-model="user.last_name" form-name="registration" />
-                                {{ form_errors.name.0 }}
+                        {% endif %}
+ 
+                               <div class="form-group">
+                                   <label for="name">First Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" autofocus ng-model="user.first_name" form-name="registration" />
                             </div>
+                          
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email" name="email" ng-model="user.email" form-name="registration" />
-                                {{ form_errors.email.0 }}
+                               <input type="text" class="form-control" id="email" name="email" ng-model="user.email" form-name="registration" />
+
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" ng-model="user.password" form-name="registration"/>
-                                {{ form_errors.password.0 }}
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-lg btn-wide btn-sucess">Register</button>
